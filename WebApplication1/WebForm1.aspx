@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    Webform page
+    Webform page1
     </div>
     </form>
 </body>
