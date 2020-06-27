@@ -26,10 +26,10 @@ jobs:
     - uses: microsoft/setup-msbuild@v1.0.0
     
     - name: Nugetrestore
-      run: nuget restore BuildDeployProject.sln
+      run: nuget restore WebApplication1.sln
       
     - name: MSBuild
-      #working-directory: BuildDeployProject
+      #working-directory: WebApplication1
       run:  msbuild .\WebApplication1.sln Release  --output  ./Release
          
 
