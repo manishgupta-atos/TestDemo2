@@ -10,38 +10,16 @@ on:
   pull_request:
     branches: [ master ]
   
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: windows-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    #- uses: nuget/setup-nuget@v1
-    #- uses: warrenbuckley/Setup-MSBuild@v1
-    #- uses: microsoft/setup-msbuild@v1.0.0
-    
-    #- name: Nugetrestore
-     # run: nuget restore WebApplication1.sln
-      
-    #- name: Setup Dotnet 
-     # uses: actions/setup-dotnet@v1
-      #with:
-       # dotnet-version: '2.2.300'
-      
-    - name: 'Run dotnet build'
-      #shell: bash
-      run: |
-           cd "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin\"
-           .\MSBuild.exe $Env:GITHUB_WORKSPACE\WebApplication1\WebApplication1.sln
-         
+    - uses: actions/checkout@master
 
-    # Runs a single command using the runners shell
-    - name: Checkoutstep
-      run: echo Checkoutstep!
-  
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
 
+    - name: MSBuild
+      working-directory: TestDemo2
+      run: msbuild Webapplication1.csproj
