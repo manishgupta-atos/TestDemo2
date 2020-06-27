@@ -23,14 +23,24 @@ jobs:
     - uses: actions/checkout@v2
     - uses: nuget/setup-nuget@v1
     #- uses: warrenbuckley/Setup-MSBuild@v1
-    - uses: microsoft/setup-msbuild@v1.0.0
+    #- uses: microsoft/setup-msbuild@v1.0.0
     
     - name: Nugetrestore
       run: nuget restore WebApplication1.sln
       
-    - name: MSBuild
-      #working-directory: WebApplication1
-      run:  msbuild .\WebApplication1.sln Release  --output  ./Release
+    - name: Setup Dotnet 
+      uses: actions/setup-dotnet@v1
+      #with:
+       # dotnet-version: '2.2.300'
+      
+    - name: 'Run dotnet build'
+      shell: bash
+      run: |
+        # If your web app project is not located in your repository's root
+        # Please consider using pushd to change your path
+        pushd .
+        dotnet build --configuration Release --output ./output
+        popd
          
 
     # Runs a single command using the runners shell
