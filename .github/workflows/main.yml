@@ -28,19 +28,16 @@ jobs:
     #- name: Nugetrestore
      # run: nuget restore WebApplication1.sln
       
-    - name: Setup Dotnet 
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '2.2.300'
+    #- name: Setup Dotnet 
+     # uses: actions/setup-dotnet@v1
+      #with:
+       # dotnet-version: '2.2.300'
       
     - name: 'Run dotnet build'
-      shell: bash
+      #shell: bash
       run: |
-        # If your web app project is not located in your repository's root
-        # Please consider using pushd to change your path
-        # pushd .
-        dotnet build --configuration Release
-        #popd
+           cd "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\15.0\Bin\"
+           .\MSBuild.exe $Env:GITHUB_WORKSPACE\WebApplication1\WebApplication1.sln
          
 
     # Runs a single command using the runners shell
